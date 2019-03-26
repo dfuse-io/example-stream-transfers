@@ -1,6 +1,7 @@
 {
-  "name": "example",
+  "name": "@dfuse/client-react-example",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@dfuse/eosws-js": "^0.11.10",
