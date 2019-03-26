@@ -18,6 +18,7 @@ class App extends Component {
 
     this.stream = undefined
     this.client = new EoswsClient(createEoswsSocket(() => new WebSocket(wsUrl), {
+      reconnectDelayInMs: 500,
       onClose: this.onClose,
       onError: this.onError,
       onReconnect: this.onReconnect,

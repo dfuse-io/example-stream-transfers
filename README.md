@@ -12,8 +12,8 @@ Then simply launch the development mode to see the end results:
 
     REACT_APP_DFUSE_API_TOKEN=<your dfuse API token here> yarn start
 
-Once it has started, simply open http://localhost:3000 in a browser
-to test the example.
+When running this, a browser should automatically open pointing
+to the example. If it's not the case, simply open http://localhost:3000 in a browser.
 
 ### Requirements
 
