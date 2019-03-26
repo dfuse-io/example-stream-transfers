@@ -1041,10 +1041,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@dfuse/eosws-js@^0.11.10":
-  version "0.11.10"
-  resolved "https://registry.yarnpkg.com/@dfuse/eosws-js/-/eosws-js-0.11.10.tgz#5582d8758b94e31b16183317b9dde89297ce3958"
-  integrity sha512-b84ZtsXOfugOz8abjWAGp/1b+zTeyFJmBX4FSms2nNx49WzR2NW9awNElYWzDQ4q16zSFOyXbscfTV5/iLQqAw==
+"@dfuse/eosws-js@^0.11.11":
+  version "0.11.11"
+  resolved "https://registry.yarnpkg.com/@dfuse/eosws-js/-/eosws-js-0.11.11.tgz#9724bf21e4f1fe3932279f8e4eceec19a990285d"
+  integrity sha512-jRY4AruDTNOsvgqiG3QUYy6YyEr5YfFyYyeBMFRprkEA2cTcCev/R3OJ94lLhsnQWU/zl8UqBwaX/qWiyjSNQA==
   dependencies:
     debug "^4.1.0"
 
