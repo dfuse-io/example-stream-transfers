@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@dfuse/eosws-js": "^0.11.11",
+    "@dfuse/client": "^0.2.0-rc.4",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-scripts": "2.1.8"

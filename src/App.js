@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { createEoswsSocket, EoswsClient, InboundMessageType } from '@dfuse/eosws-js';
+import { InboundMessageType, createDfuseClient } from '@dfuse/client';
 
 import './App.css';
 
-const apiToken = process.env.REACT_APP_DFUSE_API_TOKEN
-const wsUrl = `wss://mainnet.eos.dfuse.io/v1/stream?token=${apiToken}`
+const apiKey = process.env.REACT_APP_DFUSE_API_KEY
+const network = process.env.REACT_APP_DFUSE_NETWORK || "mainnet"
 
 class App extends Component {
   state = {
@@ -17,35 +17,36 @@ class App extends Component {
     super()
 
     this.stream = undefined
-    this.client = new EoswsClient(createEoswsSocket(() => new WebSocket(wsUrl), {
-      reconnectDelayInMs: 500,
-      onClose: this.onClose,
-      onError: this.onError,
-      onReconnect: this.onReconnect,
-    }))
+    this.client = createDfuseClient({
+      apiKey,
+      network,
+      streamClientOptions: {
+        socketOptions: {
+          onClose: this.onClose,
+          onError: this.onError,
+        }
+      }
+    })
   }
 
   componentWillUnmount() {
     if (this.stream !== undefined) {
-      this.stream.unlisten()
+      this.stream.close()
     }
-
-    // Try our best to disconnect gracefully
-    this.client.disconnect()
   }
 
   launch = async () => {
-    if (!apiToken) {
+    if (!apiKey) {
       const messages = [
         "To correctly run this sample, you need to defined an environment variable",
-        "named 'REACT_APP_DFUSE_API_TOKEN' with the value being your dfuse API token.",
+        "named 'REACT_APP_DFUSE_API_KEY' with the value being your dfuse API token.",
         "",
         "To make it into effect, define the variable before starting the development",
         "scripts, something like:",
         "",
-        "REACT_APP_DFUSE_API_TOKEN=ey....af yarn start",
+        "REACT_APP_DFUSE_API_KEY=web_....",
         "",
-        "You can obtain a free API token by visiting https://dfuse.io"
+        "You can obtain a free API key by visiting https://dfuse.io"
       ]
 
       this.setState({ connected: false, errorMessages: messages, transfers: [] })
@@ -55,18 +56,14 @@ class App extends Component {
     this.setState({ errorMessages: [], transfers: [] })
 
     try {
-      await this.client.connect()
-      this.setState({ connected: true })
+      this.stream = await this.client.streamActionTraces({
+        account: "eosio.token", action_name: "transfer"
+      }, this.onMessage)
 
-      this.streamTransfer()
+      this.setState({ connected: true })
     } catch (error) {
       this.setState({ errorMessages: ["Unable to connect to socket.", JSON.stringify(error)] })
     }
-  }
-
-  streamTransfer = () => {
-    this.stream = this.client.getActionTraces({ account: "eosio.token", action_name: "transfer" })
-    this.stream.onMessage(this.onMessage)
   }
 
   onMessage = async (message) => {
@@ -87,11 +84,9 @@ class App extends Component {
       return
     }
 
-    this.stream.unlisten()
-    this.stream = undefined
-
     try {
-      await this.client.disconnect()
+      await this.stream.close()
+      this.stream = undefined
     } catch (error) {
       this.setState({ errorMessages: ["Unable to disconnect socket correctly.", JSON.stringify(error)]})
     }
@@ -103,11 +98,6 @@ class App extends Component {
 
   onError = (error) => {
     this.setState({ errorMessages: ["An error occurred with the socket.", JSON.stringify(error)]})
-  }
-
-  onReconnect = () => {
-    this.setState({ connected: true })
-    this.streamTransfer()
   }
 
   renderTransfer = (transfer, index) => {
