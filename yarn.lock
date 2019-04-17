@@ -1041,10 +1041,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@dfuse/client@^0.2.0-rc.4":
-  version "0.2.0-rc.4"
-  resolved "https://registry.yarnpkg.com/@dfuse/client/-/client-0.2.0-rc.4.tgz#e62b509b71019bb02aa394af6f19d479703f2b5d"
-  integrity sha512-yI176XjH/1oiOfNqwloWdH/yC6QTFuCE5GQ3tW91j5goFTK0mYoC5JLASSF6oEXMJJNqUhReXwqX8Y6BL9dwZw==
+"@dfuse/client@^0.2.0-rc.21":
+  version "0.2.0-rc.21"
+  resolved "https://registry.yarnpkg.com/@dfuse/client/-/client-0.2.0-rc.21.tgz#b288a8f82376e994a9fa55ee41daf06edaeea04b"
+  integrity sha512-Oe2m9tEZ1N96/f2cOVCPxcP1wmw+qGeuc870c8HqBmstdYDXxdVZa/KorM3JXYPP/SNsNveuQ1AhjpNHMYRW1g==
   dependencies:
     debug "^4.1.0"
 
