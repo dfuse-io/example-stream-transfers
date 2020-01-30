@@ -1,4 +1,4 @@
-## dfuse Client Library - React Example
+## dfuse Client Library - Stream Ethereum Transfers Example
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and
 showcase how to use [dfuse Client Library](https://github.com/dfuse-io/client-js) to easily stream
